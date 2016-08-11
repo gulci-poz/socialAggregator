@@ -1,0 +1,9 @@
+PS: ni (New-Item) <filename>
+npm install -g express-generator
+express socialAggregator
+cd socialAggregator
+npm install
+SET DEBUG=socialAggregator:*
+npm start
+localhost:3000
+npm install --save ejs
