@@ -5,10 +5,29 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+// begin OAuth
+
+var passport = require('passport');
+var session = require('express-session');
+
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var auth = require('./routes/auth');
 
 var app = express();
+var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+
+passport.use(new GoogleStrategy({
+    clientID: '787962520803-t147gue1qeaob08lqum2jq4ngv38four.apps.googleusercontent.com',
+    clientSecret: 'ya_i4N2xasfGuXMqvkMEsSS-',
+    callbackURL: 'http://localhost:3000/auth/google/callback'
+    },
+    function(req, accessToken, refreshToken, profile, done) {
+        done(null, profile);
+    }
+));
+
+// end OAuth
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -22,8 +41,26 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// begin OAuth
+
+app.use(session({secret: 'anything'}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.serializeUser(function(user, done) {
+   done(null, user) ;
+});
+
+passport.deserializeUser(function(user, done) {
+    done(null, user);
+});
+
+// end OAuth
+
 app.use('/', routes);
 app.use('/users', users);
+app.use('/auth', auth);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,9 +1,16 @@
 PS: ni (New-Item) <filename>
 npm install -g express-generator
+(npm init)
 express socialAggregator
 cd socialAggregator
 npm install
 SET DEBUG=socialAggregator:*
 npm start
 localhost:3000
-npm install --save ejs
+npm install ejs --save
+npm install passport --save
+npm install express-session --save
+npm install passport-google-oauth --save
+bower init
+bower install
+bower install bootstrap fontawesome --save

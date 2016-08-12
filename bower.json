@@ -1,0 +1,22 @@
+{
+  "name": "socialAggregator",
+  "description": "",
+  "main": "app.js",
+  "authors": [
+    "gulci-poz <sebastian.gulczynski.poznan@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/gulci-poz/socialAggregator",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "font-awesome": "fontawesome#^4.6.3"
+  }
+}
