@@ -43,7 +43,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // begin OAuth
 
-app.use(session({secret: 'anything'}));
+app.use(session({
+    secret: 'anything',
+    resave: false,
+    saveUninitialized: false
+}));
 
 app.use(passport.initialize());
 app.use(passport.session());
